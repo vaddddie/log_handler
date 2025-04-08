@@ -1,0 +1,34 @@
+2025-03-28 12:44:46,000 INFO django.request: GET /api/v1/reviews/ 204 OK [192.168.1.59]
+2025-03-28 12:21:51,000 INFO django.request: GET /admin/dashboard/ 200 OK [192.168.1.68]
+2025-03-28 12:40:47,000 CRITICAL django.core.management: DatabaseError: Deadlock detected
+2025-03-28 12:25:45,000 DEBUG django.db.backends: (0.41) SELECT * FROM 'products' WHERE id = 4;
+2025-03-28 12:03:09,000 DEBUG django.db.backends: (0.19) SELECT * FROM 'users' WHERE id = 32;
+2025-03-28 12:05:13,000 INFO django.request: GET /api/v1/reviews/ 201 OK [192.168.1.97]
+2025-03-28 12:11:57,000 ERROR django.request: Internal Server Error: /admin/dashboard/ [192.168.1.29] - ValueError: Invalid input data
+2025-03-28 12:37:43,000 INFO django.request: GET /api/v1/users/ 204 OK [192.168.1.36]
+2025-03-28 12:01:42,000 WARNING django.security: IntegrityError: duplicate key value violates unique constraint
+2025-03-28 12:09:16,000 INFO django.request: GET /api/v1/cart/ 204 OK [192.168.1.93]
+2025-03-28 12:04:09,000 INFO django.request: GET /api/v1/products/ 204 OK [192.168.1.44]
+2025-03-28 12:25:37,000 INFO django.request: GET /api/v1/support/ 204 OK [192.168.1.35]
+2025-03-28 12:49:16,000 WARNING django.security: SuspiciousOperation: Invalid HTTP_HOST header
+2025-03-28 12:09:06,000 ERROR django.request: Internal Server Error: /api/v1/support/ [192.168.1.84] - DatabaseError: Deadlock detected
+2025-03-28 12:07:59,000 ERROR django.request: Internal Server Error: /api/v1/support/ [192.168.1.45] - OSError: No space left on device
+2025-03-28 12:24:19,000 DEBUG django.db.backends: (0.13) SELECT * FROM 'orders' WHERE id = 60;
+2025-03-28 12:06:22,000 INFO django.request: GET /api/v1/auth/login/ 204 OK [192.168.1.37]
+2025-03-28 12:47:37,000 WARNING django.security: PermissionDenied: User does not have permission
+2025-03-28 12:00:48,000 INFO django.request: GET /admin/login/ 204 OK [192.168.1.51]
+2025-03-28 12:13:21,000 WARNING django.security: ConnectionError: Failed to connect to payment gateway
+2025-03-28 12:05:33,000 INFO django.request: GET /admin/dashboard/ 204 OK [192.168.1.69]
+2025-03-28 12:26:26,000 ERROR django.request: Internal Server Error: /api/v1/checkout/ [192.168.1.90] - ConnectionError: Failed to connect to payment gateway
+2025-03-28 12:18:25,000 ERROR django.request: Internal Server Error: /admin/dashboard/ [192.168.1.90] - DatabaseError: Deadlock detected
+2025-03-28 12:45:52,000 DEBUG django.db.backends: (0.32) SELECT * FROM 'shipping' WHERE id = 51;
+2025-03-28 12:13:12,000 INFO django.request: GET /api/v1/payments/ 201 OK [192.168.1.90]
+2025-03-28 12:35:15,000 INFO django.request: GET /admin/dashboard/ 201 OK [192.168.1.37]
+2025-03-28 12:46:29,000 INFO django.request: GET /api/v1/checkout/ 201 OK [192.168.1.51]
+2025-03-28 12:13:15,000 INFO django.request: GET /api/v1/products/ 200 OK [192.168.1.88]
+2025-03-28 12:14:29,000 INFO django.request: GET /api/v1/orders/ 201 OK [192.168.1.64]
+2025-03-28 12:42:47,000 INFO django.request: GET /api/v1/auth/login/ 201 OK [192.168.1.16]
+2025-03-28 12:07:23,000 CRITICAL django.core.management: ConnectionError: Failed to connect to payment gateway
+2025-03-28 12:26:42,000 WARNING django.security: PermissionDenied: User does not have permission
+2025-03-28 12:31:51,000 ERROR django.request: Internal Server Error: /api/v1/support/ [192.168.1.90] - SuspiciousOperation: Invalid HTTP_HOST header
+2025-03-28 12:26:51,000 CRITICAL django.core.management: PermissionDenied: User does not have permission
