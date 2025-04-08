@@ -9,22 +9,31 @@ from log_handler.report.base_report_generator import ReportGenerator
 
 
 class SampleReportGenerator(ReportGenerator):
+    """Custom report generator"""
     def log_handler(
         self, log_file: str, lock: mp.Lock, lines: DictProxy, logs_count: mp.Value
     ) -> None:
-        logs = self.splitting_logs(read_log(log_file))
+        """Processes logs.
+
+        :param:
+        log_file(str): Log file name,
+        lock(mp.Lock): Multiprocessing lock,
+        lines(dict): Processed logs,
+        logs_count(int): Total count of logs.
+        """
+        logs: list[str] = self.splitting_logs(read_log(log_file))
 
         for log in logs:
-            match = re.search(r"/\S*", log["message"])
+            match: re.Match = re.search(r"/\S*", log["message"])
             if match:
-                handler = match.group()
+                handler: str = match.group()
             else:
-                handler = "empty"
+                handler: str = "empty"
             with lock:
                 logs_count.value += 1
                 if handler not in lines.keys():
                     lines[handler] = {}
-                tmp_dict = lines[
+                tmp_dict: dict = lines[
                     handler
                 ]  # Для того чтобы нормально вложить словарь в прокси словарь
                 if log["level"] not in tmp_dict.keys():
@@ -33,15 +42,20 @@ class SampleReportGenerator(ReportGenerator):
                 lines[handler] = tmp_dict
 
     def generate_report(self, logs: list) -> None:
-        processes = []
+        """Generates a report.
+
+        :param:
+        logs(list[str]): Names of log files
+        """
+        processes: list[mp.Process] = []
 
         with mp.Manager() as manager:
-            lines = manager.dict()
-            lock = mp.Lock()
-            logs_count = mp.Value("i", 0)
+            lines: DictProxy = manager.dict()
+            lock: mp.Lock = mp.Lock()
+            logs_count: mp.Value = mp.Value("i", 0)
 
             for log in logs:
-                p = mp.Process(
+                p: mp.Process = mp.Process(
                     target=self.log_handler, args=(log, lock, lines, logs_count)
                 )
                 p.start()
@@ -53,16 +67,16 @@ class SampleReportGenerator(ReportGenerator):
             lines = dict(lines)
             self.logs_count = int(logs_count.value)
 
-        headers = {}
+        headers: dict[str: int] = {}
 
         for handler in lines:
             for level in sorted(list(lines[handler])):
                 if level not in headers:
                     headers[level] = 0
 
-        table = SampleTable(["HANDLER", *headers], f"Total requests: {self.logs_count}")
+        table: SampleTable = SampleTable(["HANDLER", *headers], f"Total requests: {self.logs_count}")
         for handler in sorted(lines):
-            row = [handler]
+            row: list = [handler]
             for level in list(headers):
                 if level in lines[handler]:
                     row.append(lines[handler][level])

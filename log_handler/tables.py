@@ -1,18 +1,31 @@
 class SampleTable:
-    def __init__(self, headers, prefix=""):
-        self.headers = headers
-        self.prefix = prefix
-        self.rows = []
-        self.lines = []
+    """Formatted table"""
+    def __init__(self, headers: list[str], prefix: str = "") -> None:
+        """Initializes the table.
 
-    def add_row(self, row):
+        :param:
+        headers(list[str]): Headers,
+        prefix(str): Prefix.
+        """
+        self.headers: list[str] = headers
+        self.prefix: str = prefix
+        self.rows: list[str] = []
+        self.lines: list[str] = []
+
+    def add_row(self, row: list) -> None:
+        """Adds lines.
+
+        :param:
+        row(list): Row.
+        """
         if len(row) != len(self.headers):
             raise RuntimeError(
                 "The number of columns does not match the number of headings"
             )
         self.rows.append(row)
 
-    def generate_lines(self):
+    def generate_lines(self) -> None:
+        """Formats rows."""
         self.lines = []
         self.lines.append(self.prefix + "\n")
 
@@ -32,9 +45,15 @@ class SampleTable:
             )
             self.lines.append(formatted_row)
 
-    def get_lines(self):
+    def get_lines(self) -> list:
+        """Returns the rows.
+
+        :return:
+        list[list[str]]: Rows.
+        """
         return self.lines
 
-    def display(self):
+    def display(self) -> None:
+        """Displays the table"""
         for line in self.lines:
             print(line)
